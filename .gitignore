@@ -53,7 +53,7 @@ local.properties
 *.iml
 
 /android/app/build/
-#android/app/src/main/AndroidManifest.xml
+android/app/src/main/AndroidManifest.xml
 
 # Node
 node_modules
