@@ -108,3 +108,4 @@ RNTester/Pods/*
 # Android memory profiler files
 *.hprof
 
+android/app/src/main/AndroidManifest.xml
