@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Image, TouchableOpacity, AsyncStorage } from 'react-native';
+import {View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import styles from './styles';
 
-const AddTripScreen = ({navigation: {goBack}}) => {
+const AddTripScreen = ({navigation: {goBack, navigate}}) => {
     
     const[tripName, setTripName] = useState();
 
@@ -15,13 +16,18 @@ const AddTripScreen = ({navigation: {goBack}}) => {
             longitude: 0
         }
         const tripsAS = await AsyncStorage.getItem('trips');
+        console.log("tripsAS", tripsAS);
         let trips = [];
         if(tripsAS){
             trips = JSON.parse(tripsAS);
         }
+        console.log("depois do if", trips);
         trips.push(newTrip);
-        await AsyncStorage.setItem('trips', JSON.stringify(trips));
-        console.log(trips);
+        console.log("depois do push", trips);
+        const saveTrip = await AsyncStorage.setItem('trips', JSON.stringify(trips));
+        console.log("here");
+        if(saveTrip) navigate('AddPointScreen', {id: newTrip.id});
+        console.log(saveTrip);
     }
    
     return(
@@ -33,7 +39,7 @@ const AddTripScreen = ({navigation: {goBack}}) => {
             </TouchableOpacity>
             </View>
             <TextInput style={styles.input} placeholder="Nome da Viagem" onChangeText={(value) => {setTripName(value)}} />
-            <TouchableOpacity style={styles.saveButton} onPress={handleSave()}>
+            <TouchableOpacity style={styles.saveButton} onPress={()=> handleSave()}>
                 <Text>Salvar Nova Viagem</Text>
             </TouchableOpacity>
         </View>

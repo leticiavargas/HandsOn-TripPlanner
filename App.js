@@ -7,6 +7,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import TripsScreen from './src/screens/TripsScreen';
 import TripDetail from './src/screens/TripDetail';
 import AddTripScreen from './src/screens/AddTripScreen';
+import AddPointScreen from './src/screens/AddPointScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const App = () => {
         <Stack.Screen name="Trips" component={TripsScreen} options={{headerShown: false}} />
         <Stack.Screen name="TripDetail" component={TripDetail} options={{headerShown: false}} />
         <Stack.Screen name="AddTripScreen" component={AddTripScreen} options={{headerShown: false}} />
+        <Stack.Screen name="AddPointScreen" component={AddPointScreen} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );
